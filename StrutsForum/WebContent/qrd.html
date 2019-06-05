@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+<script type="text/javascript" src="js/qrcode.js"></script>
+<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+<div class="ad_img" id="erweima">
+   <img id="qrCodeIco" style="display: none;" src="/images/avatar/0.jpg" alt="">
+</div>
+<script type="text/javascript">
+$(function () {
+	$('#erweima').qrcode("http://www.baidu.com");
+	$("#erweima canvas")[0].getContext('2d').drawImage($("#qrCodeIco")[0], 100, 100, 65, 65);
+	
+});
+
+
+</script>
+
+
+
+
+
+</body>
+
+</html>

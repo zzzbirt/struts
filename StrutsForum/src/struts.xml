@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!--name:配置包名      namespace:给action的访问路径定义一个命名空间 >相当于什么路径下的-->
+	<package name="MyPackage" namespace="/"
+		extends="struts-default">
+		<action name="LoginAction" class="com.gucci.web.UserAction"
+			method="execute">
+			<!-- 默认为转发 ,type="redirect"重定向 -->
+			<result name="success" type="redirect">/index.html</result>
+			<result name="error">/login.jsp</result>
+		</action>
+
+		<action name="LoginActionDefault"
+			class="com.gucci.web.DefaultAction" method="execute" />
+		<action name="LoginActionImpl" class="com.gucci.web.ImplAction"
+			method="execute" />
+
+	</package>
+
+</struts>
