@@ -3,20 +3,44 @@
 	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
 	"http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-	<!--name:配置包名      namespace:给action的访问路径定义一个命名空间 >相当于什么路径下的-->
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+	<!--name:配置包名 namespace:给action的访问路径定义一个命名空间 >相当于什么路径下的 -->
 	<package name="MyPackage" namespace="/"
 		extends="struts-default">
-		<action name="LoginAction" class="com.gucci.web.UserAction"
-			method="execute">
+		<global-allowed-methods>regex:.*</global-allowed-methods>
+	<!-- action:配置action类 
+		name:决定了action访问的资源名称       servlet中是url-pattern 
+		 class:action的完整类名  method:指定调用action中的哪个方法来去处理请求-->
+		<action name="LoginAction_*" class="com.gucci.web.UserAction"
+			method="{1}">
 			<!-- 默认为转发 ,type="redirect"重定向 -->
 			<result name="success" type="redirect">/index.html</result>
 			<result name="error">/login.jsp</result>
 		</action>
+		
+		<!-- <action name="LoginActionRegister" class="com.gucci.web.UserAction"
+			method="register">
+			默认为转发 ,type="redirect"重定向
+			<result name="success" type="redirect">/index.html</result>
+			<result name="error">/login.jsp</result>
+		</action> -->
 
 		<action name="LoginActionDefault"
-			class="com.gucci.web.DefaultAction" method="execute" />
-		<action name="LoginActionImpl" class="com.gucci.web.ImplAction"
-			method="execute" />
+			class="com.gucci.web.DefaultAction" method="execute" ></action>
+		
+		<action name="LoginActionImpl_*" class="com.gucci.web.ImplAction"
+			method="{1}" >
+			<!-- 转发到LoginActionDefault -->
+			<result name="defaultAction" type="chain">LoginActionDefault</result>
+			<!-- 重定向到Action(LoginAction_*) -->
+			<result name="tologin" type="redirectAction">
+			<param name="actionName">LoginAction_login</param>
+			<param name="username">${username}</param>
+			<param name="password">${password}</param>
+			</result>
+			
+			</action>
 
 	</package>
 

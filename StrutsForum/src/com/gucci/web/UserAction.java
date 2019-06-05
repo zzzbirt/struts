@@ -14,8 +14,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		return null;
 	}
 
-	public String execute() throws Exception {
-		System.err.println("我已经运行");
+	public String login() throws Exception {
+		System.out.println("login方法");
+		System.out.println(user.getUsername());
 		UserService userService = new UserService();
 		boolean success = userService.findUser(user);
 		if (success) {
@@ -25,6 +26,17 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			return "error";
 		}
 
+	}
+	
+	public String register() throws Exception {
+		System.err.println("register方法");
+		return null;
+		
+	}
+	
+	public String kill() throws Exception {
+		System.err.println("kill方法");
+		return null;
 	}
 
 	@Override

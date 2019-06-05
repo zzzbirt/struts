@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<section class="sec">
-		<form action="${pageContext.request.contextPath}/LoginAction" method="post">
+		<form action="${pageContext.request.contextPath}/LoginAction_login" method="post">
 			<div class="register-box">
 				<label for="username" class="username_label"> 用 户 名 <input
 					maxlength="20" name="username" type="text" placeholder="您的用户名和登录名" />
